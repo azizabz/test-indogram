@@ -1,0 +1,11 @@
+name: Instagrams
+modelClass: AbdulAziz\Indograms\Models\Indogram
+form: $/abdulaziz/indograms/models/indogram/fields.yaml
+defaultRedirect: abdulaziz/indograms/instagrams
+create:
+    redirect: 'abdulaziz/indograms/instagrams/update/:id'
+    redirectClose: abdulaziz/indograms/instagrams
+update:
+    redirect: abdulaziz/indograms/instagrams
+    redirectClose: abdulaziz/indograms/instagrams
+preview: {  }

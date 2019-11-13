@@ -6,8 +6,9 @@ code = "main-menu"
 ==
 <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
     <div class="container">
-        <a class="navbar-brand" href="#">{{ this.theme.site_name|default('My App') }}</a>
-        <a class="navbar-toggler" href="#" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="{{ 'indograms'|page }}">{{ this.theme.site_name|default('Indograms') }}</a>
+        <a class="navbar-toggler" href="#" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </a>
 
@@ -23,6 +24,20 @@ code = "main-menu"
                     </a>
                 </li>
                 {% endfor %}
+
+                <li class="nav-item {% if this.page.id == 'login' %} active {% endif %}">
+                    {% if not user %}
+                    <a class="nav-link" href="{{ 'login'|page }}">Login</a>
+                    {% else %}
+                    <a class="nav-link" href="{{ 'login'|page }}">My Profile</a>
+                    {% endif %}
+
+                </li>
+                {% if user %}
+                <li class="nav-item">
+                    <a class="nav-link" data-request="onLogout" data-request-data="redirect: '/'">Logout</a>
+                </li>
+                {% endif %}
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

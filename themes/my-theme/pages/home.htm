@@ -1,8 +1,17 @@
 title = "Home"
-url = "/"
+url = "/home"
 layout = "default"
 is_hidden = 0
 
+[builderList]
+modelClass = "AbdulAziz\Indograms\Models\Indogram"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "caption"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
 ==
 <div class="hero">
     <div class="content-center">
@@ -12,6 +21,6 @@ is_hidden = 0
             <p>
             	<a class="btn btn-lg btn-primary">Start Crafting</a>
             </p>
-        </div>
+        </div>{% component 'builderList' %}
     </div>
 </div>

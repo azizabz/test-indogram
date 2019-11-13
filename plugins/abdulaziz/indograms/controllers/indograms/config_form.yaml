@@ -1,0 +1,10 @@
+name: Indograms
+form: $/abdulaziz/indograms/models/indogram/fields.yaml
+modelClass: AbdulAziz\Indograms\Models\Indogram
+defaultRedirect: abdulaziz/indograms/indograms
+create:
+    redirect: 'abdulaziz/indograms/indograms/update/:id'
+    redirectClose: abdulaziz/indograms/indograms
+update:
+    redirect: abdulaziz/indograms/indograms
+    redirectClose: abdulaziz/indograms/indograms

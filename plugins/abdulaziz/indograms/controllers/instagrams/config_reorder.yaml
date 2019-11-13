@@ -1,0 +1,4 @@
+title: Instagrams
+modelClass: AbdulAziz\Indograms\Models\Indogram
+toolbar:
+    buttons: reorder_toolbar

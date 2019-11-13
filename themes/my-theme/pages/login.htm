@@ -1,0 +1,33 @@
+title = "Login"
+url = "/login"
+layout = "default"
+is_hidden = 0
+
+[account]
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+
+[session]
+security = "guest"
+redirect = "indograms"
+==
+<div class="container my-5">
+    {% if not user %}
+
+    <div class="row">
+
+        <div class="col-md-6 mx-auto">
+            <h3>Sign in</h3>
+            {% partial account ~ '::signin' %}
+            <p class="mt-3">Don't have an account? <a href="{{ 'register'|page }}">Register</a></p>
+        </div>
+
+    </div>
+
+    {% else %}
+
+    {% partial account ~ '::activation_check' %}
+
+    {% endif %}
+</div>

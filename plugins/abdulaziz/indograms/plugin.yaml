@@ -1,0 +1,11 @@
+plugin:
+    name: 'abdulaziz.indograms::lang.plugin.name'
+    description: 'abdulaziz.indograms::lang.plugin.description'
+    author: 'Abdul Aziz'
+    icon: oc-icon-camera-retro
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Indograms
+        url: abdulaziz/indograms/indograms
+        icon: icon-camera-retro
