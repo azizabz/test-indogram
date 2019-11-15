@@ -1,0 +1,15 @@
+columns:
+    caption:
+        label: Caption
+        type: text
+        searchable: true
+        sortable: true
+    slug:
+        label: Slug
+        type: text
+        searchable: false
+        sortable: true
+    created_at:
+        label: 'Uploaded at'
+        type: date
+        sortable: true

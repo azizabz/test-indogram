@@ -1,0 +1,10 @@
+name: Post
+form: $/abdulaziz/indograms/models/post/fields.yaml
+modelClass: AbdulAziz\Indograms\Models\Post
+defaultRedirect: abdulaziz/indograms/post
+create:
+    redirect: 'abdulaziz/indograms/post/update/:id'
+    redirectClose: abdulaziz/indograms/post
+update:
+    redirect: abdulaziz/indograms/post
+    redirectClose: abdulaziz/indograms/post

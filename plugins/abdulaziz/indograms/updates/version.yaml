@@ -12,3 +12,18 @@
 1.0.5:
     - 'Updated table abdulaziz_indograms_'
     - builder_table_update_abdulaziz_indograms__3.php
+1.0.6:
+    - 'Updated table abdulaziz_indograms_'
+    - builder_table_update_abdulaziz_indograms__4.php
+1.0.7:
+    - 'Created table abdulaziz_indograms_posts_users'
+    - builder_table_create_abdulaziz_indograms_posts_users.php
+1.0.8:
+    - 'Updated table abdulaziz_indograms_'
+    - builder_table_update_abdulaziz_indograms__5.php
+1.0.9:
+    - 'Updated table abdulaziz_indograms_'
+    - builder_table_update_abdulaziz_indograms__6.php
+1.0.10:
+    - 'Updated table abdulaziz_indograms_posts_users'
+    - builder_table_update_abdulaziz_indograms_users.php

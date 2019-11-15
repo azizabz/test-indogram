@@ -7,5 +7,5 @@ plugin:
 navigation:
     main-menu-item:
         label: Indograms
-        url: abdulaziz/indograms/indograms
+        url: abdulaziz/indograms/post
         icon: icon-camera-retro

@@ -28,6 +28,16 @@
 </div>
 {% endif %}
 
-<button type="submit" class="btn btn-default">Save</button>
+<div class="form-group">
+    <label for="facebook">Facebook</label>
+    <input name="facebook" type="text" class="form-control" value="{{ user.facebook }}">
+</div>
+<div class="form-group">
+    <label for="bio">Biography</label>
+    <textarea name="bio" type="text" class="form-control">{{ user.bio }}</textarea>
+</div>
+
+<button type="submit" class="btn btn-success">Save</button>
+<a href="{{ 'profile'|page }}" class="btn btn-default">Cancel</a>
 
 {{ form_close() }}

@@ -1,0 +1,20 @@
+title = "Upload"
+url = "/upload"
+layout = "default"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "login"
+
+[uploadform]
+==
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <h2>Upload Photo</h2>
+
+        <div class="mt-5">
+            {% component 'uploadform' %}
+        </div>
+    </div>
+</div>

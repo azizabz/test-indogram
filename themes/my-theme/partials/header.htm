@@ -6,7 +6,7 @@ code = "main-menu"
 ==
 <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
     <div class="container">
-        <a class="navbar-brand" href="{{ 'indograms'|page }}">{{ this.theme.site_name|default('Indograms') }}</a>
+        <a class="navbar-brand" href="{{ 'home'|page }}">{{ this.theme.site_name|default('Indograms') }}</a>
         <a class="navbar-toggler" href="#" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -29,7 +29,7 @@ code = "main-menu"
                     {% if not user %}
                     <a class="nav-link" href="{{ 'login'|page }}">Login</a>
                     {% else %}
-                    <a class="nav-link" href="{{ 'login'|page }}">My Profile</a>
+                    <a class="nav-link" href="{{ 'profile'|page }}">My Profile</a>
                     {% endif %}
 
                 </li>
@@ -39,10 +39,10 @@ code = "main-menu"
                 </li>
                 {% endif %}
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            </form> -->
         </div>
     </div>
 </nav>

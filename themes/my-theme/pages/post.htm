@@ -1,0 +1,45 @@
+title = "Post"
+url = "/post/:slug"
+layout = "default"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "login"
+
+[builderDetails]
+modelClass = "AbdulAziz\Indograms\Models\Post"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "caption"
+notFoundMessage = "Record not found"
+==
+{% set record = builderDetails.record %}
+{% set displayColumn = builderDetails.displayColumn %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+{% if not user %}
+<a class="btn btn-default btn-lg" href="{{ 'home'|page }}">Back</a>
+{% else %}
+<a class="btn btn-default btn-lg" href="{{ 'home'|page }}">Back</a>
+<a class="btn btn-success btn-lg float-right" href="{{ 'edit-post'|page({ slug: record.slug }) }}">Edit Post</a>
+{% endif %}
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        {% if record %}
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">
+                {% for user in record.users %}
+                {{ user.name }}
+                {% endfor %}
+            </h5>
+            <small>{{ record.created_at }}</small>
+        </div>
+        <div class="text-center">
+            <img class="img-fluid" src="{{ record.photo.path }}">
+        </div>
+        <p>{{ record.caption }}</p>
+        {% else %}
+        <p>{{ notFoundMessage }}</p>
+        {% endif %}
+    </div>
+</div>

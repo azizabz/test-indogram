@@ -1,0 +1,30 @@
+fields:
+    photo:
+        label: 'Photo Upload'
+        span: auto
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        imageWidth: '250'
+        imageHeight: '250'
+        type: fileupload
+    caption:
+        label: Caption
+        size: ''
+        span: full
+        type: richeditor
+    slug:
+        label: Slug
+        span: auto
+        preset:
+            field: photo
+            type: slug
+        type: text
+    users:
+        label: Users
+        span: auto
+        nameFrom: name
+        descriptionFrom: description
+        type: relation

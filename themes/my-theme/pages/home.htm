@@ -1,26 +1,86 @@
 title = "Home"
-url = "/home"
+url = "/:page?"
 layout = "default"
 is_hidden = 0
 
+[session]
+security = "user"
+redirect = "login"
+
 [builderList]
-modelClass = "AbdulAziz\Indograms\Models\Indogram"
+modelClass = "AbdulAziz\Indograms\Models\Post"
 scope = "-"
 scopeValue = "{{ :scope }}"
 displayColumn = "caption"
 noRecordsMessage = "No records found"
-detailsPage = "-"
-detailsUrlParameter = "id"
+detailsPage = "post"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+recordsPerPage = 2
 pageNumber = "{{ :page }}"
+sortColumn = "id"
+sortDirection = "desc"
 ==
-<div class="hero">
-    <div class="content-center">
-        <div class="container">
-            <h1>Hi Bro! Let's Get Started</h1>
-            <p class="lead">All set, we're ready to go.</p>
-            <p>
-            	<a class="btn btn-lg btn-primary">Start Crafting</a>
-            </p>
-        </div>{% component 'builderList' %}
+<a class="btn btn-primary btn-lg" href="{{ 'upload'|page }}">Upload Photo</a>
+
+{% set records = builderList.records %}
+{% set displayColumn = builderList.displayColumn %}
+{% set noRecordsMessage = builderList.noRecordsMessage %}
+{% set detailsPage = builderList.detailsPage %}
+{% set detailsKeyColumn = builderList.detailsKeyColumn %}
+{% set detailsUrlParameter = builderList.detailsUrlParameter %}
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="list-group">
+            {% for record in records %}
+            {# Use spaceless tag to remove spaces inside the A tag. #}
+            {% spaceless %}
+            {% if detailsPage %}
+            <div class="mt-3">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                        {% for user in record.users %}
+                        {{ user.name }}
+                        {% endfor %}
+                    </h5>
+                    <small>{{ record.created_at }}</small>
+                </div>
+                <div class="text-center">
+                    <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">
+                        {% endif %}
+
+                        <img class="img-fluid" src="{{ record.photo.path }}">
+
+                        {% if detailsPage %}
+                    </a>
+                </div>
+                <p>{{ record.caption }}</p>
+                <hr>
+            </div>
+            {% endif %}
+            {% endspaceless %}
+            {% else %}
+            <p class="no-data">{{ noRecordsMessage }}</p>
+            {% endfor %}
+        </div>
     </div>
 </div>
+
+{% if records.lastPage > 1 %}
+<ul class="pagination">
+    {% if records.currentPage > 1 %}
+    <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr; Prev</a></li>
+    {% endif %}
+
+    {% for page in 1..records.lastPage %}
+    <li class="{{ records.currentPage == page ? 'active' : null }}">
+        <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+    </li>
+    {% endfor %}
+
+    {% if records.lastPage > records.currentPage %}
+    <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next &rarr;</a></li>
+    {% endif %}
+</ul>
+{% endif %}

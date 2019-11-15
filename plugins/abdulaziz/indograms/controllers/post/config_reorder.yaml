@@ -1,0 +1,5 @@
+title: Post
+modelClass: AbdulAziz\Indograms\Models\Post
+nameFrom: id
+toolbar:
+    buttons: reorder_toolbar

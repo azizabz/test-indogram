@@ -1,0 +1,42 @@
+title = "Edit Post"
+url = "/edit-post/:slug"
+layout = "default"
+is_hidden = 0
+
+[session]
+security = "user"
+redirect = "login"
+
+[builderDetails]
+modelClass = "AbdulAziz\Indograms\Models\Post"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "caption"
+notFoundMessage = "Record not found"
+
+[updateform]
+==
+{% set record = builderDetails.record %}
+{% set displayColumn = builderDetails.displayColumn %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
+{% if record %}
+<form method="POST" action="{{ 'edit-post'|page({ slug: record.slug }) }}">
+
+    <input type="hidden" name="_handler" value="onUpdate">
+
+    {{ form_token() }}
+    {{ form_sessionKey() }}
+
+    <input type="hidden" name="slug" value="{{record.slug}}">
+
+    <div class="form-group">
+        <label for="caption">Caption</label>
+        <textarea class="form-control" id="caption" name="caption" rows="3">{{ record.caption }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="button" class="btn btn-default" onclick="javascript:history.back()">Cancel</button>
+</form>
+{% else %}
+{{ notFoundMessage }}
+{% endif %}

@@ -1,0 +1,6 @@
+plugin:
+    name: 'abdulaziz.profile::lang.plugin.name'
+    description: 'abdulaziz.profile::lang.plugin.description'
+    author: 'Abdul Aziz'
+    icon: oc-icon-male
+    homepage: ''

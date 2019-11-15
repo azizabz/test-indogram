@@ -1,4 +1,5 @@
 title: Indograms
 modelClass: AbdulAziz\Indograms\Models\Indogram
+nameFrom: in
 toolbar:
     buttons: reorder_toolbar
