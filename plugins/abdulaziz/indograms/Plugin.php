@@ -10,8 +10,7 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-            'Abdulaziz\Indograms\Components\UploadForm' => 'uploadform',
-            'Abdulaziz\Indograms\Components\UpdateForm' => 'updateform',
+            'Abdulaziz\Indograms\Components\CustomForm' => 'customform',
         ];
     }
 

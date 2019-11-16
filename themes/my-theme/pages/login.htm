@@ -9,7 +9,8 @@ forceSecure = 0
 requirePassword = 0
 
 [session]
-security = "all"
+security = "guest"
+redirect = "home"
 
 ==
 {% if not user %}
@@ -25,9 +26,5 @@ security = "all"
 {% else %}
 
 {% partial account ~ '::activation_check' %}
-
-{% partial account ~ '::update' %}
-
-{% partial account ~ '::deactivate_link' %}
 
 {% endif %}

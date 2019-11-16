@@ -10,13 +10,13 @@ use AbdulAziz\Indograms\Models\Post;
 use October\Rain\Support\Facades\Flash;
 use RainLab\User\Facades\Auth;
 
-class UploadForm extends ComponentBase
+class CustomForm extends ComponentBase
 {
     public function componentDetails()
     {
         return [
-            'name' => 'Upload Form',
-            'Description' => 'Form for upload photo'
+            'name' => 'Custom Form',
+            'Description' => 'Custom form for post'
         ];
     }
 
@@ -25,7 +25,6 @@ class UploadForm extends ComponentBase
         $validator = Validator::make(
             [
                 'photo' => Input::file('photo'),
-                'caption' => Input::get('caption')
             ],
             [
                 'photo' => 'required|image'
@@ -35,9 +34,9 @@ class UploadForm extends ComponentBase
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator);
         } else {
-
+            $user = Auth::getUser()->id;
             $username = Auth::getUser()->username;
-            $slug = $username . '-' . date("Ymdhis");
+            $slug = $username . '-' . $user . date("Ymdhis");
 
             $post = new Post();
 
@@ -47,12 +46,34 @@ class UploadForm extends ComponentBase
 
             $post->save();
 
-            $user = Auth::getUser()->id;
             $post->users()->attach($user);
 
             Flash::success('Photo uploaded successfully!');
 
             return Redirect::to('/');
         }
+    }
+
+    public function onUpdate()
+    {
+        $slug = $this->param('slug');
+        $post = Post::where('slug', $slug)->first();
+
+        $post->caption = Input::get('caption');
+
+        $post->save();
+
+        Flash::success('Caption updated successfully!');
+
+        return Redirect::to('/post/' . $slug);
+    }
+
+    public function onDelete()
+    {
+        $slug = $this->param('slug');
+        Post::where('slug', $slug)->delete();
+
+        Flash::success('Photo deleted successfully!');
+        return Redirect::to('/');
     }
 }

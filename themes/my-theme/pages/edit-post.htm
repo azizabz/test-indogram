@@ -14,7 +14,7 @@ modelKeyColumn = "slug"
 displayColumn = "caption"
 notFoundMessage = "Record not found"
 
-[updateform]
+[customform]
 ==
 {% set record = builderDetails.record %}
 {% set displayColumn = builderDetails.displayColumn %}
@@ -27,8 +27,6 @@ notFoundMessage = "Record not found"
 
     {{ form_token() }}
     {{ form_sessionKey() }}
-
-    <input type="hidden" name="slug" value="{{record.slug}}">
 
     <div class="form-group">
         <label for="caption">Caption</label>

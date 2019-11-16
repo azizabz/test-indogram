@@ -12,7 +12,7 @@ modelClass = "AbdulAziz\Indograms\Models\Post"
 scope = "-"
 scopeValue = "{{ :scope }}"
 displayColumn = "caption"
-noRecordsMessage = "No records found"
+noRecordsMessage = "No photos have been uploaded yet"
 detailsPage = "post"
 detailsKeyColumn = "slug"
 detailsUrlParameter = "slug"
@@ -47,7 +47,7 @@ sortDirection = "desc"
                     <small>{{ record.created_at }}</small>
                 </div>
                 <div class="text-center">
-                    <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">
+                    <a href="{{ 'post'|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">
                         {% endif %}
 
                         <img class="img-fluid" src="{{ record.photo.path }}">
@@ -61,7 +61,7 @@ sortDirection = "desc"
             {% endif %}
             {% endspaceless %}
             {% else %}
-            <p class="no-data">{{ noRecordsMessage }}</p>
+            <p class="no-data text-center">{{ noRecordsMessage }}</p>
             {% endfor %}
         </div>
     </div>

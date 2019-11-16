@@ -13,16 +13,34 @@ identifierValue = "{{ :slug }}"
 modelKeyColumn = "slug"
 displayColumn = "caption"
 notFoundMessage = "Record not found"
+
+[customform]
 ==
 {% set record = builderDetails.record %}
 {% set displayColumn = builderDetails.displayColumn %}
 {% set notFoundMessage = builderDetails.notFoundMessage %}
-{% if not user %}
-<a class="btn btn-default btn-lg" href="{{ 'home'|page }}">Back</a>
-{% else %}
+
+{% if user %}
+
 <a class="btn btn-default btn-lg" href="{{ 'home'|page }}">Back</a>
 <a class="btn btn-success btn-lg float-right" href="{{ 'edit-post'|page({ slug: record.slug }) }}">Edit Post</a>
+
+<form action="{{ 'post'|page({ slug: record.slug }) }}" method="POST" class="float-right mr-2">
+
+    <input type="hidden" name="_handler" value="onDelete">
+
+    {{ form_token() }}
+    {{ form_sessionKey() }}
+
+    <button type="submit" class="btn btn-danger btn-lg">Delete Post</button>
+</form>
+
+{% else %}
+
+<a class="btn btn-default btn-lg" href="{{ 'home'|page }}">Back</a>
+
 {% endif %}
+
 <div class="row">
     <div class="col-md-6 mx-auto">
         {% if record %}
