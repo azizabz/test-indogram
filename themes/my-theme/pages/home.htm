@@ -68,19 +68,25 @@ sortDirection = "desc"
 </div>
 
 {% if records.lastPage > 1 %}
-<ul class="pagination">
-    {% if records.currentPage > 1 %}
-    <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr; Prev</a></li>
-    {% endif %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if records.currentPage > 1 %}
+        <li class="page-item"><a class="page-link"
+                href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}"><span
+                    aria-hidden="true">&laquo;</span></a></li>
+        {% endif %}
 
-    {% for page in 1..records.lastPage %}
-    <li class="{{ records.currentPage == page ? 'active' : null }}">
-        <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
-    </li>
-    {% endfor %}
+        {% for page in 1..records.lastPage %}
+        <li class="page-item {{ records.currentPage == page ? 'active' : null }}">
+            <a class="page-link" href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+        </li>
+        {% endfor %}
 
-    {% if records.lastPage > records.currentPage %}
-    <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next &rarr;</a></li>
-    {% endif %}
-</ul>
+        {% if records.lastPage > records.currentPage %}
+        <li class="page-item"><a class="page-link"
+                href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}"><span
+                    aria-hidden="true">&raquo;</span></a></li>
+        {% endif %}
+    </ul>
+</nav>
 {% endif %}
